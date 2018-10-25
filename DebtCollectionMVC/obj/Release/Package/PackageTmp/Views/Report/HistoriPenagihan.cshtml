@@ -1,0 +1,169 @@
+﻿@model DebtCollectionMVC.ViewModels.TaskManagementViewModel
+@{
+    ViewBag.Title = "HISTORI PENAGIHAN";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- HEADING-->
+<div class="card">
+    <div class="card-body">
+        <h4 class="header-title">Data Role Menu</h4>
+        <div class="panel-heading">
+            <table width="500" height="75px" id="headerSearch">
+                <tbody>
+                    <tr>
+                        <td align="center">
+                            <div class="form-group">
+                                <h6>@Html.LabelFor(model => model.DateTimeStart)</h6>
+                                @Html.TextBoxFor(model => model.DateTimeStart, "{0:MM/dd/yyyy}", new { @class = "form-control datepicker", style = "width: 200px; align: center;", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.DateTimeStart)
+                            </div>
+                        </td>
+                        <td align="center">
+                            <div class="form-group">
+                                <h6>@Html.LabelFor(model => model.DateTimeEnd)</h6>
+                                @Html.TextBoxFor(model => model.DateTimeEnd, "{0:MM/dd/yyyy}", new { @class = "form-control datepicker", style = "width: 200px; align: center;", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.DateTimeEnd)
+                            </div>
+                        <td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+
+        <!-- BODY -->
+        <div class="dataTable_wrapper datatable-primary">
+            <table id="roleakses" style="margin-left:auto; margin-right:auto;" class="table table-striped table-bordered text-center">
+                <thead class="text-capitalize">
+                    <tr>
+                        <th>Keterangan</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <!-- BUTTON-->
+            <p align="right" style="padding-right: 15px; padding-top: 15px">
+                <button type="button" class="btn btn-primary add-data" data-toggle="modal" data-target=".bs-example-modal-lg">Add Role Menu</button>
+            </p>
+            <!-- MODAL CONTENT -->
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-content" id="modalButton">
+                            <!-- LOADED HERE -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODAL NEW ROLE -->
+            <div class="modal fade bs-example-modal-sm modal-new-role" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">New</h5>
+                                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" name="simpan" value="Save">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!------------------->
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+
+        $(function () { // will trigger when the document is ready
+            $('.datepicker').datepicker(); //Initialise any date pickers
+        });
+
+
+        //Initial
+        var table = $("#roleakses").DataTable({ paging: false, searching: false, info: false});
+        $(".add-data").hide();
+
+        //Search
+        $("#headerSearch").on("change",
+            $("#IdentityRole"),
+            function() {
+                table.clear().draw();
+                $(".add-data").hide();
+
+                if ($("#IdentityRole").val() != "") {
+                    $(".add-data").show();
+                    table.destroy();
+                    table = $("#roleakses").DataTable({
+                        paging: false, searching: false, info: false,
+                        ajax: {
+                            url: "/api/roles/" + $("#IdentityRole").val(),
+                            dataSrc: ""
+                        },
+                        columns: [
+                            {
+                                data: "Menu.Name"
+                            },
+                            {
+                                data: "Id",
+                                render: function(data) {
+                                    return "<button class='btn btn-danger js-delete' data-rolemenu-id=" +
+                                        data +
+                                        ">Delete</button>";
+                                }
+                            }
+                        ]
+                    });
+                }
+            });
+
+        //Delete
+        $("#roleakses").on("click",
+            ".js-delete",
+            function() {
+                var button = $(this);
+
+                bootbox.confirm("Delete this?",
+                    function(result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/roles/" + button.attr("data-rolemenu-id"),
+                                method: "DELETE",
+                                success: function() {
+                                    $("#roleakses").DataTable().row(button.parents("tr")).remove().draw();
+                                }
+                            });
+                        }
+                    });
+            });
+
+
+        //Modal Role Akses FOrm
+        var url = '@Url.Action("RoleAksesForm", "Security")';
+        $(document).on("click",
+            ".add-data",
+            function() {
+                if ($("#IdentityRole").val() == "") {
+                    bootbox.alert("Pilih role akses");
+                } else {
+                    var id = $("#IdentityRole").val()
+                    $("#modalButton").load(url, { id: id });
+                }
+            });
+    </script>
+}

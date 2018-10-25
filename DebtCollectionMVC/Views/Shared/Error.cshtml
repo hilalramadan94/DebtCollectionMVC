@@ -1,0 +1,28 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@RenderSection("scripts", required: false)
+
+<div id="preloader">
+    <div class="loader"></div>
+</div>
+<!-- preloader area end -->
+<!-- error area start -->
+<div class="error-area ptb--100 text-center">
+    <div class="container">
+        <div class="error-content">
+            <h2>404</h2>
+            <p>Ooops! Something went wrong .</p>
+            <a href="index.html">Back to Dashboard</a>
+        </div>
+    </div>
+</div>
+
+
+

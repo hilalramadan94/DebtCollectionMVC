@@ -1,0 +1,91 @@
+﻿@using DebtCollectionMVC.App_Start
+<div class="sidebar-menu">
+    <!-- HEADER -->
+    <div class="sidebar-header">
+        <div class="logo">
+            <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                <img src="@Url.Content("~/Content/Images/Logo.png")" alt="logo">
+            </a>
+        </div>
+    </div>
+    <!-- SIDEBAR -->
+    <div class="main-menu">
+        <div class="menu-inner">
+            <nav>
+                <ul class="metismenu" id="menu">
+                @{
+                    if (User.IsInRole("Admin"))
+                    {
+                        <!-- SECURITY -->
+                        <li class=@Html.IsSelected(actions: "UserList,RoleAkses", controllers: "Security")>
+                            <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>Security</span></a>
+                            <ul class="collapse">
+                                <li class=@Html.IsSelected(actions: "UserList", controllers: "Security")>
+                                    <a href="@Url.Action("UserList", "Security")">User List</a>
+                                </li>
+                                <li class=@Html.IsSelected(actions: "RoleAkses", controllers: "Security")>
+                                    <a href="@Url.Action("RoleAkses", "Security")">Role Akses</a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    <!-- SETUP -->
+                    <li class=@Html.IsSelected(actions: "TaskManagement,Collector,Area", controllers: "Setup")>
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i><span>Setup</span></a>
+                        <ul class="collapse">
+                            <li class=@Html.IsSelected(actions: "TaskManagement", controllers: "Setup")>
+                                <a href="@Url.Action("TaskManagement", "Setup")">Task Management</a>
+                            </li>
+                            <li class=@Html.IsSelected(actions: "Collector", controllers: "Setup")>
+                                <a href="@Url.Action("Collector", "Setup")">Collector</a>
+                            </li>
+                            <li class=@Html.IsSelected(actions: "Area", controllers: "Setup")>
+                                <a href="@Url.Action("Area", "Setup")">Area</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- TRANSAKSI -->
+                    <li class=@Html.IsSelected(actions: "SetorAO,HistoriPenagihan,DetailPenagihan", controllers: "Transaksi")>
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="ti-receipt"></i><span>Transaksi</span></a>
+                        <ul class="collapse">
+                            <li class=@Html.IsSelected(actions: "SetorAO", controllers: "Transaksi")>
+                                <a href="@Url.Action("SetorAO", "Transaksi")">Setor AO</a>
+                            </li>
+                            <li class=@Html.IsSelected(actions: "HistoriPenagihan", controllers: "Transaksi")>
+                                <a href="@Url.Action("HistoriPenagihan", "Transaksi")">Histori Penagihan</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- REPORT -->
+                    @*<li class=@Html.IsSelected(actions: "TaskManagement,SetorAO,HistoriPenagihan", controllers: "Report")>
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>Report</span></a>
+                        <ul class="collapse">
+                            <li class=@Html.IsSelected(actions: "TaskManagement", controllers: "Report")>
+                                <a href="@Url.Action("TaskManagement", "Report")">Task Management</a>
+                            </li>
+                            <li class=@Html.IsSelected(actions: "SetorAO", controllers: "Report")>
+                                <a href="@Url.Action("SetorAO", "Report")">Setor AO</a>
+                            </li>
+                            <li class=@Html.IsSelected(actions: "HistoriPenagihan", controllers: "Report")>
+                                <a href="@Url.Action("HistoriPenagihan", "Report")">Histori Penagihan</a>
+                            </li>
+                        </ul>
+                    </li>*@
+                    <li class=@Html.IsSelected(actions: "Setting", controllers: "Account")>
+                        <a href="@Url.Action("Setting", "Account")"><i class="fa fa-wrench"></i><span>Setting</span></a>
+                    </li>
+
+                    <!-- LOGOUT -->
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm", @class = "navbar-right"}))
+                     {
+                         @Html.AntiForgeryToken()
+                         <li><a href="javascript:document.getElementById('logoutForm').submit()" style="padding-left: 32px !important">
+                             <i class="fa fa-sign-out"></i><span>Sign Out</span>
+                         </a></li>
+                     }
+                }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

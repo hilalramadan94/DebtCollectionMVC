@@ -1,0 +1,58 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewBag.Title - Debt Collection</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+
+<body>
+<!-- Openpage Effect -->
+
+@if (Request.IsAuthenticated)
+{
+    <div class="page-container">
+        @Html.Partial("_NavBar")
+        <div class="main-content">
+            @Html.Partial("_Header")
+            <!-- /.container-fluid -->
+            <div class="main-content-inner">
+                <div class="row">
+                    <div class="col-12 mt-5">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <footer>
+            <div class="footer-area">
+                @*<p>© Copyright 2018. All right reserved.</p>*@
+                <p>
+                    Project on 
+                    <a href="https://github.com/hilalramadan94/DebtCollectionMVC"><i class="fa fa-github"></i> Github</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+}
+else
+{
+    @RenderBody()    
+}
+
+@Html.Partial("_OffsetArea")
+
+@Scripts.Render("~/bundles/jquery")
+@RenderSection("scripts", required: false)
+
+</body>
+</html>

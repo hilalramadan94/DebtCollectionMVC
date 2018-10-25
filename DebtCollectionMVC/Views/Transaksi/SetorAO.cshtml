@@ -1,0 +1,166 @@
+﻿@{
+    ViewBag.Title = "Penyetoran Tagihan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- HEADING-->
+<div class="card">
+    <div class="card-body">
+        <h4 class="header-title">Data Tagihan</h4>
+        <!-- BODY -->
+        <div class="dataTable_wrapper datatable-primary">
+            <table id="tasktable" style="margin-left:auto; margin-right:auto;" class="table table-striped table-bordered text-center">
+                <thead class="text-capitalize">
+                    <tr>
+                        <th>No Akad</th>
+                        <th>Debitur</th>
+                        <th>Alamat</th>
+                        <th>Area</th>
+                        <th>Tanggal Kunjungan</th>
+                        <th>Total Tagihan</th>
+                        <th>Total Bayar</th>
+                        <th>Collector</th>
+                        <th>Check</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <!-- BUTTON-->
+            <p align="right" style="padding-right: 15px; padding-top: 15px">
+                <button type="button" class="btn btn-success setor-ao" data-toggle="modal" data-target=".modal-menu">Setor</button>
+            </p>
+
+            <!-- MODAL CONTENT -->
+            <div class="modal fade bs-example-modal-sm modal-menu" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Jumlah Penyetoran</h5>
+                                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="text" id="totalSummary" class="form-control" readonly>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" id="submitSetor" name="simpan" value="Save">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!------------------->
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        //Init
+        var i = 0;
+        var totalPaid = 0;
+        var chkItems = new Array();
+
+        //Show Table
+        $(document).ready(function() {
+            var table = $("#tasktable").DataTable({
+                ajax: {
+                    url: "/api/homevisits?confirmation=false",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "Id"
+                    },
+                    {
+                        data: "Debt.Name"
+                    },
+                    {
+                        data: "Debt.Address"
+                    },
+                    {
+                        data: "Debt.Area.Village"
+                    },
+                    {
+                        data: "HomeVisitDate",
+                        render: function (data) {
+                            var d = new Date(data),
+                                month = '' + (d.getMonth() + 1),
+                                day = '' + d.getDate(),
+                                year = d.getFullYear();
+
+                            if (month.length < 2) month = '0' + month;
+                            if (day.length < 2) day = '0' + day;
+
+                            return [day,month,year].join('/');
+                        }
+                    },
+                    {
+                        render: function(data, type, tasktable) {
+                            var total = tasktable.PrincipalBill + tasktable.Margin + tasktable.Fee + tasktable.Penalty
+
+                            return "Rp."+ total.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+                        }
+                    },
+                    {
+                        data: "AmountPaid",
+                        render: function(data) {
+
+                            return data.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+                        }
+                    },
+                    {
+                        render: function(data, type, tasktable) {
+                            if (tasktable.ApplicationUser.Name == "")
+                                return "BabyPanda";
+                            else
+                                return tasktable.ApplicationUser.Name;
+                        }
+                    },
+                    {
+                        render: function (data, type, tasktable) {
+                            
+
+                            return "<input type=checkbox value=" + tasktable.Id + " money= " + tasktable.AmountPaid + ">";
+                        }
+                    }
+                ]
+            });
+        });
+
+        //Checkbox
+        $(document).on("click",
+            ".setor-ao",
+            function () {
+                //Get Checkbox value
+                $('#tasktable tr').each(function () {
+                    var row = $(this);
+
+                    if (row.find('input[type="checkbox"]').is(':checked')) {
+                        var id = row.find('[type="checkbox"]').attr("value");
+                        var money = row.find('[type="checkbox"]').attr("money");
+                        totalPaid = totalPaid + parseInt(money);
+                        chkItems.push(id);
+                    }
+                });
+                $("#totalSummary").val(totalPaid);
+            });
+
+        //Sumbit
+        $(document).on("click", "#submitSetor", function () {
+            $.ajax({
+                url: "/api/homevisits",
+                method: "POST",
+                data: { listHomeVisitId: chkItems },
+
+                success: function () {
+                    location.reload();
+                }
+            });
+        });
+    </script>
+}
+

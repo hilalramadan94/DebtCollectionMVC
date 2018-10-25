@@ -1,0 +1,61 @@
+﻿@using DebtCollectionMVC.Models
+@model DebtCollectionMVC.ViewModels.RegisterViewModel
+<!-- START MODAL-->
+<div class="modal-header">
+    <h5 class="modal-title">Add User</h5>
+    <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+</div>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-body">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword)
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ConfirmPassword)
+        </div>  
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Address)
+            @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Address)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.PhoneNumber)
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.PhoneNumber)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.DepartmentId)
+            @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.Department, "Id", "Name"), "Pilih salah satu", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.DepartmentId)    
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.RoleName)
+            @Html.DropDownListFor(m => m.RoleName, new SelectList(Model.Roles, "Name", "Name"), "Pilih salah satu", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.RoleName)    
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" name="simpan" value="Save">
+    </div>
+}
+
+<!-- END MODAL-->
+

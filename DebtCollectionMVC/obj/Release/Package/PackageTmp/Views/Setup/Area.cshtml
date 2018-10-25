@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "AREA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- HEADING-->
+<div class="panel-heading">
+
+</div>
+
+<!-- BODY -->
+<div class="card">
+    <div class="card-body">
+        <h4 class="header-title">Data User</h4>
+        <div class="dataTable_wrapper datatable-primary">
+            <table id="areas" style="margin-left:auto; margin-right:auto;" class="table table-striped table-bordered text-center">
+                <thead class="text-capitalize">
+                <tr>
+                    <th>Kode Pos</th>
+                    <th>Kelurahan</th>
+                    <th>Kecamatan</th>
+                    <th>Kota</th>
+                    <th>Provinsi</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Body Table Here-->
+                </tbody>
+            </table>
+
+            @section scripts
+            {
+                <script>
+                    $(document).ready(function() {
+                        var table = $("#areas").DataTable({
+                            ajax: {
+                                url: "/api/areas",
+                                dataSrc: ""
+                            },
+                            columns: [
+                                {
+                                    data: "PostalCode",
+                                },
+                                {
+                                    data: "Village",
+                                },
+                                {
+                                    data: "SubDistrict",
+                                },
+                                {
+                                    data: "City",
+                                },
+                                {
+                                    data: "Province",
+                                },
+                                {
+                                    data: "Province",
+                                }
+                            ]
+                        });
+                    });
+
+
+                </script>
+            }
+
+        </div>
+    </div>
+</div>
+

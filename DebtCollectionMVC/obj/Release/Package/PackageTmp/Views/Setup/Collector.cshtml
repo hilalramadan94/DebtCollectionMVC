@@ -1,0 +1,140 @@
+﻿
+@{
+    ViewBag.Title = "COLLECTOR";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-body">
+        <h4 class="header-title">Data Collector</h4>
+        <div class="dataTable_wrapper datatable-primary">
+            <!-- Table Start-->
+            <table id="usertable" style="margin-left:auto; margin-right:auto;" class="table table-striped table-bordered text-center">
+                <thead class="text-capitalize">
+                    <tr>
+                        <th>Username</th>
+                        <th>Nama</th>
+                        <th>Alamat</th>
+                        <th>Telepon</th>
+                        <th>Perusahaan</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Body Table Here-->
+                </tbody>
+            </table>
+
+            @section scripts
+            {
+                <script>
+                    $(document).ready(function() {
+                        var table = $("#usertable").DataTable({
+                            ajax: {
+                                url: "/api/collectors",
+                                dataSrc: ""
+                            },
+                            columns: [
+                                {
+                                    data: "UserName",
+                                },
+                                {
+                                    data: "Name",
+                                },
+                                {
+                                    data: "Address",
+                                },
+                                {
+                                    data: "PhoneNumber",
+                                },
+                                {
+                                    data: "Department.Name",
+                                },
+                                {
+                                    data: "IsActive",
+                                    render: function(data) {
+                                        if (data)
+                                            return "<center><font color=green size=4><b>OK</b></font></center>";
+                                        else
+                                            return "<center><font color=red size=4><b>BLOCK</b></font></center>";
+                                    }
+                                },
+                                {
+                                    data: "Id",
+                                    render: function(data, type, usertable) {
+                                        var status = "Aktivasi", btnStatus = "success";
+                                        if (usertable.IsActive)
+                                            status = 'Deaktivasi', btnStatus = "danger";
+
+                                        return "<center><button class='btn btn-" +
+                                            btnStatus +
+                                            " js-aktivasi' status=" +
+                                            status +
+                                            " userid=" +
+                                            data +
+                                            " username=" +
+                                            usertable.UserName +
+                                            ">" +
+                                            status +
+                                            "</button> </center>";
+                                    }
+                                }
+                            ]
+                        });
+                    });
+
+                    $("#usertable").on("click",
+                        ".js-aktivasi",
+                        function() {
+                            var button = $(this);
+
+                            bootbox.confirm("Apakah anda yakin " +
+                                button.attr("status") +
+                                " " +
+                                button.attr("username") +
+                                " ?",
+                                function(result) {
+                                    if (result) {
+                                        $.ajax({
+                                            url: "/api/users/" + button.attr("userid"),
+                                            method: "POST",
+                                            success: function() {
+                                                location.reload();
+                                            }
+                                        });
+                                    }
+                                });
+                        });
+
+                    //Modal
+                    var url = '@Url.Action("CollectorForm", "Setup")';
+                    $(document).on("click",
+                        ".add-data",
+                        function() {
+                            $("#modalButton").load(url, {});
+                        });
+                </script>
+            }
+
+
+            <!-- BUTTON-->
+            <p align="right" style="padding-right: 15px; padding-top: 15px">
+                <button type="button" class="btn btn-primary add-data" data-toggle="modal" data-target=".bs-example-modal-lg">Add Collector</button>
+                <!--<button type="button" class="btn btn-outline btn-primary btn-lg">Edit User</button>-->
+            </p>
+
+            <!-- MODAL CONTENT -->
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-content" id="modalButton">
+                            <!-- LOADED HERE -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ------------- -->
+        </div>
+    </div>
+</div>
+

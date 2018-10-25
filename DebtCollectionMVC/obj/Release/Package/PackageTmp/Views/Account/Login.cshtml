@@ -1,0 +1,63 @@
+﻿@using DebtCollectionMVC.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+    <div class="login-area">
+        <div class="container">
+            <div class="login-box ptb--100">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                    @Html.AntiForgeryToken()
+                <div class="login-form-head">
+                    <img src="@Url.Content("~/Content/Images/Logo.png")" alt="logo">
+                    <h4>Sign In</h4>
+                    <p>Anda harus melakukan login terlebih dahulu</p>
+                </div>
+
+                    <div class="login-form-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-gp">
+                            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            <i class="ti-email"></i>
+                        </div>
+                        <div class="form-gp">
+                            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            <i class="ti-lock"></i>
+                        </div>
+                        <div class="submit-btn-area">
+                            <button type="submit" value="Log in">Masuk <i class="ti-arrow-right"></i></button>
+                            <div class="login-other row mt-4">
+                                <section id="socialLoginForm">
+                                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                                </section>
+                                @*
+                                <div class="col-6">
+                                    @Html.ActionLink("Register as a new user", "Register")
+                                    <!--<a class="fb-login" href="#">Log in with <i class="fa fa-facebook"></i></a>-->
+                                </div>
+                                <div class="col-6">
+                                    @Html.ActionLink("Register as a new user", "Register")
+                                    <!--<a class="google-login" href="#">Log in with <i class="fa fa-google"></i></a>-->
+                                </div>
+                                *@
+                            </div>
+                        </div>
+                        <div class="form-footer text-center">
+                            <p class="text-muted">
+                                Project on 
+                                <a href="https://github.com/hilalramadan94/DebtCollectionMVC">Github</a>
+                            </p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

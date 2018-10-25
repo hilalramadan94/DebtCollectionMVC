@@ -1,0 +1,98 @@
+﻿@model DebtCollectionMVC.ViewModels.DetailPenagihanViewModel
+@{
+    ViewBag.Title = "DETAIL PENAGIHAN";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="header-title">Detail</h4>
+        <div class="panel-heading">
+            <div class="table-responsive">
+                <table class="table text-center">
+                    <tbody>
+                    <tr>
+                        <td rowspan="2" width="30%">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.HomeVisit.DebtId)
+                                @Html.TextBoxFor(m => m.HomeVisit.DebtId, new {@class = "form-control", @readonly = "readonly"})
+                            </div>
+                            <div class="form-group">
+                                <label>Debitur</label>
+                                @Html.TextBoxFor(m => m.HomeVisit.Debt.Name, new {@class = "form-control", @readonly = "readonly"})
+                            </div>
+                            <div class="form-group">
+                                <label>Collector</label>
+                                @Html.TextBoxFor(m => m.HomeVisit.ApplicationUser.Name, new {@class = "form-control", @readonly = "readonly"})
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.HomeVisit.PrincipalBill)
+                                @Html.TextBoxFor(m => m.HomeVisit.PrincipalBill, new {@class = "form-control", @readonly = "readonly"})
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.HomeVisit.AmountPaid)
+                                @Html.TextBoxFor(m => m.HomeVisit.AmountPaid, new {@class = "form-control", @readonly = "readonly"})
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.HomeVisit.DueDate)
+                                @Html.TextBoxFor(m => m.HomeVisit.DueDate, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.HomeVisit.HomeVisitDate)
+                                @Html.TextBoxFor(m => m.HomeVisit.HomeVisitDate, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.HomeVisit.PromisedDate)
+                                @Html.TextBoxFor(m => m.HomeVisit.PromisedDate, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.HomeVisit.Reason)
+                                @Html.TextAreaFor(m => m.HomeVisit.Reason, new { @class = "form-control", @readonly = "readonly"})
+                            </div>
+                        </td>
+                        <td style="height: 100%;">
+                            <img src="/Content/Images/no-image.jpg" width="50%">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="map_canvas" style="width: 100%; height: 500px"></div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts
+{
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyDx8V1DDjhZ89t3iG3zsbpZR3Bezlv5D8s&sensor=false">
+    </script>
+
+    <script>
+        $(document).ready(initialize);
+
+        function initialize() {
+            var lat = -6.886791;
+            var lon = 107.615238
+            var myLatlng = new google.maps.LatLng(lat, lon)
+            var mapOptions = {
+                center: myLatlng,
+                zoom: 15,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                marker: true
+            };
+            var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+            var marker = new google.maps.Marker({
+                position: myLatlng
+            });
+            marker.setMap(map);
+        };
+    </script>
+}
+
+

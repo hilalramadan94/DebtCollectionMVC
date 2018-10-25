@@ -1,0 +1,46 @@
+﻿@using DebtCollectionMVC.Models
+@model DebtCollectionMVC.ViewModels.RoleMenuFormViewModel
+<!-- MODAL HEADER -->
+<div class="modal-header">
+    <h5 class="modal-title">Add Role Menu</h5>
+    <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+</div>
+<!-- MODAL BODY -->
+@using (Html.BeginForm("CreateRoleMenu", "Security"))
+{
+    @Html.ValidationSummary(true, "Silahkan isi semua field")
+    <div class="modal-body">
+        <div class="form-group">
+            @Html.LabelFor(m => m.IdentityRole.Name)
+            @Html.TextBoxFor(m => m.IdentityRole.Name, new {@class = "form-control", @readonly = "readonly"})
+            @Html.ValidationMessageFor(m => m.RoleMenu.IdentityRole.Name)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.RoleMenu.MenuId)
+            @Html.DropDownListFor(m => m.RoleMenu.MenuId, new SelectList(Model.Menus, "Id", "Name"), "Pilih salah satu", new {@class = "form-control role-menu"})
+            @Html.ValidationMessageFor(m => m.RoleMenu.MenuId)
+        </div>
+    </div>
+    <div class="modal-footer">
+        @Html.HiddenFor(m => m.RoleMenu.RoleId)
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" name="simpan" id="simpan" value="Save">
+    </div>
+
+    <script>
+        validate();
+
+        $(document).on("change",
+            $(".role-menu"), validate);
+        function validate() {
+            if ($(".role-menu").val().length > 0 ){
+                $("#simpan").prop("disabled", false);
+            }
+            else {
+                $("#simpan").prop("disabled", true);
+            }
+        }
+    </script>
+
+}
+<!-- END MODAL-->
