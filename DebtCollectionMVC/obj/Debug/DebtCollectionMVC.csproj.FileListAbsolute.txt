@@ -18,6 +18,7 @@ A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Antlr3.Runtime.dll
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\AutoMapper.dll
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\EntityFramework.dll
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\EntityFramework.SqlServer.dll
+A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Jmelosegui.Mvc.GoogleMap.dll
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Microsoft.AI.Agent.Intercept.dll
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Microsoft.AI.DependencyCollector.dll
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -59,6 +60,7 @@ A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Microsoft.AI.Web.xml
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Microsoft.AI.WindowsServer.xml
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Microsoft.ApplicationInsights.xml
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Newtonsoft.Json.xml
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\System.Net.Http.Formatting.xml
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\System.Web.Http.xml
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\System.Web.Http.WebHost.xml
@@ -70,7 +72,6 @@ A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\System.Web.WebPages.xml
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\System.Web.WebPages.Deployment.xml
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\System.Web.WebPages.Razor.xml
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Antlr3.Runtime.pdb
-A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Newtonsoft.Json.xml
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\EntityFramework.xml
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\EntityFramework.SqlServer.xml
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Microsoft.AspNet.Identity.Core.xml
@@ -85,6 +86,7 @@ A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Microsoft.Owin.Security.OAuth.xml
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Microsoft.Owin.Security.Google.xml
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Microsoft.Owin.Security.Twitter.xml
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.csprojResolveAssemblyReference.cache
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.Migrations.InitialDatabase.resources
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.Migrations.MargingEmployeeWithApplicationUser.resources
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.Migrations.InsertAreaBandung.resources
@@ -92,13 +94,11 @@ A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.Migrations.A
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.Migrations.DeleteRequiredAnnotationOnModel.resources
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.Migrations.EditModelRoleMenu.resources
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.Migrations.EditModelRoleMenu2.resources
+A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.Migrations.EditUserDepartmentId.resources
+A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.Migrations.PopulateRoleCollector.resources
+A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.Migrations.changeDepartmentIdtoDebt.resources
+A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.Migrations.changeUsernametoCollectorIdtoHomeVisit.resources
+A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.Migrations.changeUsernametoCollectorIdtoHomeVisit1.resources
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.csproj.GenerateResource.Cache
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.dll
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.pdb
-A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.Migrations.EditUserDepartmentId.resources
-A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.csprojResolveAssemblyReference.cache
-A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.Migrations.PopulateRoleCollector.resources
-A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.Migrations.changeDepartmentIdtoDebt.resources
-A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Jmelosegui.Mvc.GoogleMap.dll
-A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.Migrations.changeUsernametoCollectorIdtoHomeVisit.resources
-A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Debug\DebtCollectionMVC.Migrations.changeUsernametoCollectorIdtoHomeVisit1.resources

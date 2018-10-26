@@ -21,6 +21,5 @@ namespace DebtCollectionMVC.Models
         public int MenuId { get; set; }
 
         public Menu Menu { get; set; }
-
     }
 }

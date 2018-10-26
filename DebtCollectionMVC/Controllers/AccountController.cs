@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -11,6 +12,7 @@ using Microsoft.Owin.Security;
 using DebtCollectionMVC.Models;
 using DebtCollectionMVC.ViewModels;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace DebtCollectionMVC.Controllers
 {
@@ -19,14 +21,23 @@ namespace DebtCollectionMVC.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext _context;
 
         public AccountController()
         {
+            _context = new ApplicationDbContext();
         }
 
         public ActionResult Setting()
         {
-            return View();
+            var id = User.Identity.GetUserId();
+            var currentUser = _context.Users.SingleOrDefault(x => x.Id == id);
+            var viewModel = new UserSettingViewModel
+            {
+                User = currentUser
+            };
+
+            return View(viewModel);
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -79,6 +90,8 @@ namespace DebtCollectionMVC.Controllers
             {
                 return View(model);
             }
+
+            returnUrl = "/";
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -426,6 +439,19 @@ namespace DebtCollectionMVC.Controllers
             return View();
         }
 
+        public ActionResult ChangeUserDetail(UserSettingViewModel model)
+        {
+            var userInDB = _context.Users.SingleOrDefault(x => x.Id == model.User.Id);
+            if (userInDB == null)
+                return RedirectToAction("Setting");
+            userInDB.Name = model.User.Name;
+            userInDB.PhoneNumber = model.User.PhoneNumber;
+            userInDB.Address = model.User.Address;
+            _context.SaveChanges();
+
+            return RedirectToAction("Setting");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -441,6 +467,8 @@ namespace DebtCollectionMVC.Controllers
                     _signInManager.Dispose();
                     _signInManager = null;
                 }
+                //Add
+                _context.Dispose();
             }
 
             base.Dispose(disposing);

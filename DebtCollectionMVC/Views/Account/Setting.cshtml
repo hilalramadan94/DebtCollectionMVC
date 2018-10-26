@@ -1,45 +1,100 @@
-﻿@model DebtCollectionMVC.ViewModels.RegisterViewModel
+﻿@model DebtCollectionMVC.ViewModels.UserSettingViewModel
 @{
     ViewBag.Title = "Setting";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="card">
     <div class="card-body">
-        <div class="modal-body">
-            <div class="form-group">
-                @Html.LabelFor(m => m.Email)
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Email)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Password)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.ConfirmPassword)
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.ConfirmPassword)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Name)
-                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Name)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Address)
-                @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Address)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.PhoneNumber)
-                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.PhoneNumber)
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <input type="submit" class="btn btn-primary" name="simpan" value="Save">
-        </div>
+        <table width="100%" id="formInput">
+            <tr>
+                <td width="50%">
+                @using (Html.BeginForm("ChangeUserDetail", "Account", FormMethod.Post, new {id= "aform"}))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.User.Email)
+                        @Html.TextBoxFor(m => m.User.Email, new {@class = "form-control", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.User.Email)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.User.Name)
+                        @Html.TextBoxFor(m => m.User.Name, new {@class = "form-control name", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.User.Name)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.User.PhoneNumber)
+                        @Html.TextBoxFor(m => m.User.PhoneNumber, new {@class = "form-control phonenumber", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.User.PhoneNumber)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.User.Address)
+                        @Html.TextAreaFor(m => m.User.Address, new {@class = "form-control address", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.User.Address)
+                    </div>
+                    <p align="right">
+                        @Html.HiddenFor(m => m.User.Id)
+                        <button type="button" class="btn btn-default" id="edit"><i class="fa fa-edit"></i></button>
+                        <input class="btn btn-primary" id="save" value="Save" style="width: 100px;" disabled >
+                    </p>
+                }
+                </td>
+                <td width="50%" align="center" valign="top">
+                    <p style="margin-top: 100px;">
+                        <button class="btn btn-flat btn-warning mb-3" style="width: 50%;"><b>Change Password</b></button>
+                        <br>
+                        @if (Model.User.EmailConfirmed){
+                            <button class="btn btn-flat btn-info mb-3" style="width: 50%;" disabled><b>Verify Email</b></button>
+                        } else {
+                            <button class="btn btn-flat btn-info mb-3" style="width: 50%;"><b>Verify Email</b></button>
+                        }
+                    </p>
+                </td>
+            </tr>
+        </table>
+
     </div>
 </div>
+@section scripts
+{
+    <script>
+        var isInputOpen = false;
+
+        function formInputCondition() {
+            if (isInputOpen) {
+                //Activate Input
+                $(".name").prop('readonly', false);
+                $(".phonenumber").prop('readonly', false);
+                $(".address").prop('readonly', false);
+                $("#edit").attr("disabled", true);
+                $("#save").attr("disabled", false);
+            } else {
+                //Activate Input
+                $(".name").prop('readonly', true);
+                $(".phonenumber").prop('readonly', true);
+                $(".address").prop('readonly', true);
+                $("#edit").attr("disabled", false);
+                $("#save").attr("disabled", true);
+            }
+        }
+
+        $("#edit").on("click",
+            $("#edit"),
+            function() {
+                isInputOpen = true;
+                formInputCondition();
+            });
+
+        $("#save").on("click",
+            $("#save"),
+            function() {
+                bootbox.confirm("Apakah anda yakin?",
+                    function(result) {
+                        if (result) {
+                            $("#aform").submit();
+                        } else {
+                            location.reload();
+                        }
+                    });
+            });
+
+    </script>
+}
