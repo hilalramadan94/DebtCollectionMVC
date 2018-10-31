@@ -26,7 +26,7 @@ namespace DebtCollectionMVC.Controllers.Api
             _context.Dispose();
         }
 
-        public IHttpActionResult GetVisistedTask(bool confirmation)
+        public IHttpActionResult GetVisistedTasks(bool? confirmation, int? debtId)
         {
             var task = _context.HomeVisits
                 .Include(x => x.ApplicationUser)
@@ -38,8 +38,11 @@ namespace DebtCollectionMVC.Controllers.Api
 
             if (confirmation == true)
                 task = task.Where(x => x.Confirmation == true);
-            else
+            else if (confirmation == false)
                 task = task.Where(x => x.Confirmation == false || x.Confirmation == null);
+
+            if (debtId != null)
+                task = task.Where(x => x.DebtId == debtId);
 
             return Ok(task);
         }

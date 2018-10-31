@@ -45,9 +45,6 @@ namespace DebtCollectionMVC.Models
         public DbSet<RoleMenu> RoleMenus { get; set; }
         public DbSet<Debt> Debts { get; set; }
 
-
-
-
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

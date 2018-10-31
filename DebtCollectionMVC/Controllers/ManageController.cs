@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DebtCollectionMVC.Models;
+using DebtCollectionMVC.ViewModels;
 
 namespace DebtCollectionMVC.Controllers
 {
@@ -236,7 +237,8 @@ namespace DebtCollectionMVC.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                //return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                return RedirectToAction("Setting", "Account");
             }
             AddErrors(result);
             return View(model);

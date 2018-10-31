@@ -30,7 +30,6 @@ namespace DebtCollectionMVC.Controllers
         public ActionResult Index()
         {
 
-
             return View("SetorAO");
         }
 

@@ -68,7 +68,7 @@
         $(document).ready(function() {
             var table = $("#tasktable").DataTable({
                 ajax: {
-                    url: "/api/homevisits?confirmation=false",
+                    url: "/api/homevisits?confirmation=false&debtId=null",
                     dataSrc: ""
                 },
                 columns: [

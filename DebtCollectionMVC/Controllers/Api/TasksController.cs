@@ -44,6 +44,22 @@ namespace DebtCollectionMVC.Controllers.Api
             return Ok(task);
         }
 
+        public IHttpActionResult GetTasksByUsername(string username)
+        {
+            var userId = _context.Users.SingleOrDefault(x => x.UserName == username);
+
+            var task = _context.HomeVisits
+                .Include(x => x.Debt)
+                .Include(x => x.Debt.Area)
+                .Include(x => x.ApplicationUser)
+                .Where(x => x.ApplicationUserId == userId.Id)
+                .ToList()
+                .Select(Mapper.Map<HomeVisit, TaskDto>);
+
+            //return dalam bentuk Dto
+            return Ok(task);
+        }
+
         [HttpPost]
         public IHttpActionResult AssignTask(TaskManagementViewModel model)
         {

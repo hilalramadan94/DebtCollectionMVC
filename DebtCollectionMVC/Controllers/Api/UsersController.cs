@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace DebtCollectionMVC.Controllers.Api
 {
+    [System.Web.Http.Authorize]
     public class UsersController : ApiController
     {
         //Context
@@ -28,7 +29,7 @@ namespace DebtCollectionMVC.Controllers.Api
         {
             var role = _context.Roles
                 .Where(x => x.Id != "99" && x.Id != "00")
-                .FirstOrDefault();
+                .ToList();
             var thisUser = User.Identity.Name;
 
             //Get
@@ -36,8 +37,10 @@ namespace DebtCollectionMVC.Controllers.Api
             {
                 var User = _context.Users
                     .Include(c => c.Department)
-                    .Where(x => (x.UserName != thisUser) && ((x.Roles.Count == 0) ||                             //Role IsNull
-                                x.Roles.Select(y => y.RoleId).Contains(role.Id)))    //Role Not Collector
+                    .Where(x => (x.UserName != thisUser) &&                             //Not current user
+                                ((x.Roles.Count == 0) ||                                //Dont have role
+                                 (!x.Roles.Select(y => y.RoleId).Contains("00")) &&     //Not Admin
+                                 (!x.Roles.Select(y => y.RoleId).Contains("99"))))      //Not Collector
                     .ToList()
                     .Select(Mapper.Map<ApplicationUser, UserDto>);
 

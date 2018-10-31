@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using DebtCollectionMVC.Models;
+using Microsoft.Owin.Security.OAuth;
+using DebtCollectionMVC.App_Start;
 
 namespace DebtCollectionMVC
 {
@@ -63,6 +65,20 @@ namespace DebtCollectionMVC
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+
+            OAuthAuthorizationServerOptions OAuthOptions = new OAuthAuthorizationServerOptions()
+            {
+                AllowInsecureHttp = true,
+                TokenEndpointPath = new PathString("/api/token"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
+                Provider = new AuthorizationServerProvider()
+            };
+
+            // To Generate token
+            app.UseOAuthAuthorizationServer(OAuthOptions);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
         }
     }
 }

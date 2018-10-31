@@ -39,7 +39,7 @@ namespace DebtCollectionMVC.Dtos
 
         public string UrlPhoto { get; set; }
 
-        public bool Confirmation { get; set; }
+        public bool? Confirmation { get; set; }
 
         public decimal? GeoLat { get; set; }
 

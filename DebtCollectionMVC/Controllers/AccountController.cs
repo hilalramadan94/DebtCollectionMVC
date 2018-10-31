@@ -13,6 +13,7 @@ using DebtCollectionMVC.Models;
 using DebtCollectionMVC.ViewModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using DebtCollectionMVC.App_Start;
 
 namespace DebtCollectionMVC.Controllers
 {
@@ -450,6 +451,15 @@ namespace DebtCollectionMVC.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Setting");
+        }
+
+        [AllowAnonymous]
+        public async Task<ApplicationUser> FindUser(string userName, string password)
+        {
+            UserManager<ApplicationUser> _userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
+            ApplicationUser user = await _userManager.FindAsync(userName, password);
+
+            return user;
         }
 
         protected override void Dispose(bool disposing)

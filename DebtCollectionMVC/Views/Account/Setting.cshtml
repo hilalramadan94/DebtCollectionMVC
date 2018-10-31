@@ -7,7 +7,7 @@
     <div class="card-body">
         <table width="100%" id="formInput">
             <tr>
-                <td width="50%">
+                <td>
                 @using (Html.BeginForm("ChangeUserDetail", "Account", FormMethod.Post, new {id= "aform"}))
                 {
                     <div class="form-group">
@@ -37,9 +37,10 @@
                     </p>
                 }
                 </td>
-                <td width="50%" align="center" valign="top">
+                <td align="center" valign="top">
                     <p style="margin-top: 100px;">
-                        <button class="btn btn-flat btn-warning mb-3" style="width: 50%;"><b>Change Password</b></button>
+                        <a href="@Url.Action("ChangePassword", "Manage")" class="btn btn-flat btn-warning mb-3" style="width: 50%;"
+                                ><b>Change Password</b></a>
                         <br>
                         @if (Model.User.EmailConfirmed){
                             <button class="btn btn-flat btn-info mb-3" style="width: 50%;" disabled><b>Verify Email</b></button>
@@ -50,7 +51,6 @@
                 </td>
             </tr>
         </table>
-
     </div>
 </div>
 @section scripts
