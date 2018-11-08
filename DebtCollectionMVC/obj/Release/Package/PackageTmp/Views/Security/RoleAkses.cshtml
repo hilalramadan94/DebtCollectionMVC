@@ -14,17 +14,17 @@
     <div class="card-body">
         <h4 class="header-title">Data Role Menu</h4>
         <div class="panel-heading">
-            <table width="60%" height="75px" id="headerSearch">
+            <table height="75px" id="headerSearch" class="container-fluid">
                 <tbody>
                 <tr>
-                    <td align="center" width="60%">
+                    <td align="center" width="80%">
                         @Html.DropDownListFor(m => m.IdentityRole, Model.SelectList,
                             "Pilih salah satu", new {@class = "form-control", @style = "height:50px;"})
                     </td>
-                    <td align="center" width="20%">
+                    <td align="center" width="10%">
                     <button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".modal-new-role">New Role</button>
                     <td>
-                    <td align="center" width="20%">
+                    <td align="center" width="10%">
                         @using (Html.BeginForm("DeleteRole", "Security", FormMethod.Post))
                         {
                             <button type="submit" name="roleName" value="" class="btn btn-danger js-delete-role">Delete Role</button>

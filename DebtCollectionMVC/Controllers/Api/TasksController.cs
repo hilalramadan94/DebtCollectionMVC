@@ -29,7 +29,7 @@ namespace DebtCollectionMVC.Controllers.Api
             _context.Dispose();
         }
 
-        //GET /api/task
+        //Web : Halaman "Task Management"
         public IHttpActionResult GetTasks()
         {
             var task = _context.HomeVisits
@@ -44,6 +44,7 @@ namespace DebtCollectionMVC.Controllers.Api
             return Ok(task);
         }
 
+        //Mobile : "Daily Task AO"
         public IHttpActionResult GetTasksByUsername(string username)
         {
             var userId = _context.Users.SingleOrDefault(x => x.UserName == username);
@@ -60,6 +61,7 @@ namespace DebtCollectionMVC.Controllers.Api
             return Ok(task);
         }
 
+        //Web : Halaman "Task Management" -> Assign
         [HttpPost]
         public IHttpActionResult AssignTask(TaskManagementViewModel model)
         {
@@ -78,8 +80,7 @@ namespace DebtCollectionMVC.Controllers.Api
             //update customer in db
             for (int i = 0; i < taskInDB.Count; i++)
                 taskInDB[i].ApplicationUserId = collector.Id;
-            
-            //save context
+
             _context.SaveChanges();
 
             return Ok();

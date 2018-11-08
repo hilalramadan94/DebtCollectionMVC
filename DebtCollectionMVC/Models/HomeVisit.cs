@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Data.Entity.ModelConfiguration.Configuration;
 
 namespace DebtCollectionMVC.Models
 {
@@ -63,8 +65,10 @@ namespace DebtCollectionMVC.Models
         [Display(Name = "Confirmation")]
         public bool Confirmation { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:0.######}")]
         public decimal? GeoLat { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:0.######}")]
         public decimal? GeoLng { get; set; }
     }
 }

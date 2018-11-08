@@ -241,6 +241,7 @@
     <Compile Include="Controllers\Api\HomeVisitsController.cs" />
     <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\Api\TasksController.cs" />
+    <Compile Include="Controllers\Api\UploadController.cs" />
     <Compile Include="Controllers\Api\UsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -305,6 +306,14 @@
     <Compile Include="Migrations\201810231602461_changeUsernametoCollectorIdtoHomeVisit1.Designer.cs">
       <DependentUpon>201810231602461_changeUsernametoCollectorIdtoHomeVisit1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811012231237_ChangeHomeVisitGeoLatLngDecimalFormat.cs" />
+    <Compile Include="Migrations\201811012231237_ChangeHomeVisitGeoLatLngDecimalFormat.Designer.cs">
+      <DependentUpon>201811012231237_ChangeHomeVisitGeoLatLngDecimalFormat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811012257306_ChangeHomeVisitGeoLatLngDecimalFormat1.cs" />
+    <Compile Include="Migrations\201811012257306_ChangeHomeVisitGeoLatLngDecimalFormat1.Designer.cs">
+      <DependentUpon>201811012257306_ChangeHomeVisitGeoLatLngDecimalFormat1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Area.cs" />
@@ -326,6 +335,7 @@
     <Compile Include="ViewModels\SetorAOViewModel.cs" />
     <Compile Include="ViewModels\TaskManagementViewModel.cs" />
     <Compile Include="ViewModels\UserSettingViewModel.cs" />
+    <Compile Include="ViewModels\VisitingResultViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\no-image.jpg" />
@@ -521,6 +531,7 @@
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
+    <None Include="Properties\PublishProfiles\asd.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jmelosegui.googlemap.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
@@ -791,6 +802,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Userimage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -835,6 +847,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810231602461_changeUsernametoCollectorIdtoHomeVisit1.resx">
       <DependentUpon>201810231602461_changeUsernametoCollectorIdtoHomeVisit1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811012231237_ChangeHomeVisitGeoLatLngDecimalFormat.resx">
+      <DependentUpon>201811012231237_ChangeHomeVisitGeoLatLngDecimalFormat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811012257306_ChangeHomeVisitGeoLatLngDecimalFormat1.resx">
+      <DependentUpon>201811012257306_ChangeHomeVisitGeoLatLngDecimalFormat1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

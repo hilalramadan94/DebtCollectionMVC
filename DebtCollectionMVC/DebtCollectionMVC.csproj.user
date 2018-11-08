@@ -9,7 +9,9 @@
     </WebStackScaffolding_LayoutPageFile>
     <WebStackScaffolding_ControllerDialogWidth>600</WebStackScaffolding_ControllerDialogWidth>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
-    <NameOfLastUsedPublishProfile>hilal.site</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>asd</NameOfLastUsedPublishProfile>
+    <WebStackScaffolding_DbContextTypeFullName>DebtCollectionMVC.Models.ApplicationDbContext</WebStackScaffolding_DbContextTypeFullName>
+    <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

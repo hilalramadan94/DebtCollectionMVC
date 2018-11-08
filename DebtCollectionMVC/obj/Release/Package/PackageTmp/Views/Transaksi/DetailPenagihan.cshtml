@@ -27,31 +27,56 @@
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.HomeVisit.PrincipalBill)
-                                @Html.TextBoxFor(m => m.HomeVisit.PrincipalBill, new {@class = "form-control", @readonly = "readonly"})
+                                @Html.TextBoxFor(m => m.HomeVisit.PrincipalBill, new {@class = "form-control", @readonly = "readonly", Value = String.Format("{0:C}", Model.HomeVisit.PrincipalBill) })
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.HomeVisit.AmountPaid)
-                                @Html.TextBoxFor(m => m.HomeVisit.AmountPaid, new {@class = "form-control", @readonly = "readonly"})
+                                @Html.TextBoxFor(m => m.HomeVisit.AmountPaid, new {@class = "form-control", @readonly = "readonly", Value = String.Format("{0:C}", Model.HomeVisit.AmountPaid)})
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.HomeVisit.DueDate)
-                                @Html.TextBoxFor(m => m.HomeVisit.DueDate, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.TextBoxFor(m => m.HomeVisit.DueDate, "{0:dd MMM yyyy}", new { @class = "form-control", @readonly = "readonly"})
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.HomeVisit.HomeVisitDate)
-                                @Html.TextBoxFor(m => m.HomeVisit.HomeVisitDate, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.TextBoxFor(m => m.HomeVisit.HomeVisitDate, "{0:dd MMM yyyy hh:mm:ss}", new { @class = "form-control", @readonly = "readonly" })
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.HomeVisit.PromisedDate)
-                                @Html.TextBoxFor(m => m.HomeVisit.PromisedDate, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.TextBoxFor(m => m.HomeVisit.PromisedDate, "{0:dd MMM yyyy}", new { @class = "form-control", @readonly = "readonly" })
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.HomeVisit.Reason)
                                 @Html.TextAreaFor(m => m.HomeVisit.Reason, new { @class = "form-control", @readonly = "readonly"})
                             </div>
                         </td>
-                        <td style="height: 100%;">
-                            <img src="/Content/Images/no-image.jpg" width="50%">
+                        <td style="height: 100%;" align="center">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 50%;">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src="/Content/Images/no-image.jpg" alt="First slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="/Content/Images/no-image.jpg" alt="Second slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="/Content/Images/no-image.jpg"  alt="Third slide">
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -65,8 +90,6 @@
         </div>
     </div>
 </div>
-
-
 
 @section scripts
 {

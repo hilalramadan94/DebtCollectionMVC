@@ -28,8 +28,19 @@
             @section scripts
             {
                 <script>
-                    $(document).ready(function() {
-                        var table = $("#usertable").DataTable({
+                    var isScroll = false;
+                    var table = $("#usertable").DataTable({ paging: false, searching: false, info: false });
+
+                    //$(window).on("resize", loadTable);
+
+                    $(document).ready(loadTable);
+
+                    function loadTable() {
+                        if ($(window).width() < 800) isScroll = true;
+                        else isScroll = false;
+                        table.destroy();
+                        table = $("#usertable").DataTable({
+                            scrollX: isScroll,
                             ajax: {
                                 url: "/api/collectors",
                                 dataSrc: ""
@@ -81,7 +92,7 @@
                                 }
                             ]
                         });
-                    });
+                    };
 
                     $("#usertable").on("click",
                         ".js-aktivasi",

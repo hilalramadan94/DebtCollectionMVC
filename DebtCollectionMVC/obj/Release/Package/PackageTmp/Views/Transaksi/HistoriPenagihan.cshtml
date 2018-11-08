@@ -36,7 +36,7 @@
         $(document).ready(function() {
             var table = $("#tasktable").DataTable({
                 ajax: {
-                    url: "/api/homevisits?confirmation=true",
+                    url: "/api/homevisits?confirmation=true&debtId=null",
                     dataSrc: ""
                 },
                 columns: [
@@ -77,7 +77,7 @@
                         data: "AmountPaid",
                         render: function(data) {
 
-                            return data.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+                            return "Rp." + data.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
                         }
                     },
                     {

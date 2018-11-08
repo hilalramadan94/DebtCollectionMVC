@@ -54,5 +54,14 @@ namespace DebtCollectionMVC.Models
         {
             return new ApplicationDbContext();
         }
+
+        //
+        protected override void OnModelCreating(System.Data.Entity.DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<HomeVisit>().Property(x => x.GeoLat).HasPrecision(12, 8);
+            modelBuilder.Entity<HomeVisit>().Property(x => x.GeoLng).HasPrecision(12, 8);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

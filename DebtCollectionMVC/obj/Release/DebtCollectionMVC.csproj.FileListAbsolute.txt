@@ -102,3 +102,10 @@ A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Release\DebtCollectionMVC.Migrations
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Release\DebtCollectionMVC.csproj.GenerateResource.Cache
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Release\DebtCollectionMVC.dll
 A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Release\DebtCollectionMVC.pdb
+A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Microsoft.Owin.Cors.dll
+A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\System.Web.Cors.dll
+A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\System.Web.Http.Owin.dll
+A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\Microsoft.Owin.Cors.xml
+A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\bin\System.Web.Http.Owin.xml
+A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Release\DebtCollectionMVC.Migrations.ChangeHomeVisitGeoLatLngDecimalFormat.resources
+A:\JOB\DEBTCOLLECTION\DebtCollectionMVC\obj\Release\DebtCollectionMVC.Migrations.ChangeHomeVisitGeoLatLngDecimalFormat1.resources

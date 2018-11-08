@@ -26,6 +26,7 @@ namespace DebtCollectionMVC.Controllers.Api
             _context.Dispose();
         }
 
+        //Web : Halaman "Setor AO" & "Histori Penagihan"
         public IHttpActionResult GetVisistedTasks(bool? confirmation, int? debtId)
         {
             var task = _context.HomeVisits
@@ -47,8 +48,9 @@ namespace DebtCollectionMVC.Controllers.Api
             return Ok(task);
         }
 
+        //Web : Halaman "Setor AO" -> Setor
         [HttpPost]
-        public IHttpActionResult AssignTask(SetorAOViewModel model)
+        public IHttpActionResult SetorAO(SetorAOViewModel model)
         {
             var homeVisitsinDB = _context.HomeVisits
                 .Where(x => model.listHomeVisitId.Any(y => y == x.Id))

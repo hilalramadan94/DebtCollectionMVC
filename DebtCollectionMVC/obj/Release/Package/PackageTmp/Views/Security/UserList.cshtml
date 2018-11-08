@@ -8,8 +8,8 @@
         <h4 class="header-title">Data User</h4>
         <div class="dataTable_wrapper datatable-primary">
             <!-- Table Start-->
-            <table id="usertable" style="margin-left:auto; margin-right:auto;" class="table table-striped table-bordered text-center">
-                <thead class="text-capitalize">
+            <table id="usertable" style="margin-left:auto; margin-right:auto;" class="table table-striped text-center">
+                <thead>
                 <tr>
                     <th>Username</th>
                     <th>Nama</th>
@@ -25,11 +25,23 @@
                 </tbody>
             </table>
 
+
             @section scripts
             {
                 <script>
-                    $(document).ready(function() {
-                        var table = $("#usertable").DataTable({
+                    var isScroll = false;
+                    var table = $("#usertable").DataTable({ paging: false, searching: false, info: false });
+
+                    //$(window).on("resize", loadTable);
+
+                    $(document).ready(loadTable);
+
+                    function loadTable() {
+                        if ($(window).width() < 800) isScroll = true;
+                        else isScroll = false;
+                        table.destroy();
+                        table = $("#usertable").DataTable({
+                            scrollX: isScroll,
                             ajax: {
                                 url: "/api/users",
                                 dataSrc: ""
@@ -81,7 +93,7 @@
                                 }
                             ]
                         });
-                    });
+                    };
 
                     //Aktivasi
                     $("#usertable").on("click",
