@@ -1,5 +1,6 @@
 # DebtCollectionMVC
 http://hilal.site ASP.NET MVC
+(Aktif sampai November 2019)
 
 ## TEST WEBSITE
 1. Masuk ke http://hilal.site
